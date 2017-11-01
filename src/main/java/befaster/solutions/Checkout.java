@@ -45,6 +45,9 @@ public class Checkout {
 				case 'E':
 					basket.addE();
 					break;
+				case 'F':
+					basket.addF();
+					break;
 				default:
 					throw new  IllegalInputException("Input gresit!");
 			}

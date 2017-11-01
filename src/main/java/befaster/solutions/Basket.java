@@ -9,6 +9,7 @@ public class Basket {
 	private int numOfC = 0;
 	private int numOfD = 0;
 	private int numOfE = 0;
+	private int numOfF = 0;
 	
 	public Basket()
 	{
@@ -38,7 +39,12 @@ public class Basket {
 	{
 		numOfE++;	
 	}
-	
+		
+	public void addF()
+	{
+		numOfF++;	
+	}
+
 	public int getPrice()
 	{
 		int price = 0;
@@ -48,6 +54,7 @@ public class Basket {
 		price += getTotalPriceForB();
 		price += getTotalPriceForC();
 		price += getTotalPriceForD();
+		price += getTotalPriceForF();
 		
 		return price;
 	}
@@ -61,7 +68,7 @@ public class Basket {
 		int numOfAaux = numOfA % 5;
 		
 		priceForA += (numOfAaux / 3) * 130;
-		priceForA += (numOfAaux % 3) * 50;
+		priceForA += (numOfAaux % 3) * getPriceForA();
 		
 		return priceForA;
 	}
@@ -70,7 +77,7 @@ public class Basket {
 	{
 		if(numOfB > 0)
 		{
-			return ((numOfB / 2) * 45) + ((numOfB % 2) * 30);
+			return ((numOfB / 2) * 45) + ((numOfB % 2) * getPriceForB());
 		}
 		return 0;
 		
@@ -79,12 +86,12 @@ public class Basket {
 	
 	private int getTotalPriceForC()
 	{
-		return numOfC * 20;
+		return numOfC * getPriceForC();
 	}
 	
 	private int getTotalPriceForD()
 	{
-		return numOfD * 15;
+		return numOfD * getPriceForD();
 	}
 	
 	private int getTotalPriceForE()
@@ -92,7 +99,28 @@ public class Basket {
 		int numOfDoubleE = numOfE / 2;
 		numOfB -= numOfDoubleE;
 		
-		return numOfE * 40;
+		return numOfE * getPriceForE();
+	}
+	
+	private int getTotalPriceForF()
+	{
+		int priceOfF = 0;
+		
+		if(numOfF >= 3)
+		{
+			int numOfDoubleF = numOfF / 2;
+			
+			
+			if(numOfF % 2 == 0)
+			{
+				numOfF++;
+			}
+			
+			numOfF -= numOfDoubleF;
+
+		}
+		priceOfF += numOfF * getPriceForF();
+		return priceOfF;
 	}
 	
 	
@@ -121,4 +149,8 @@ public class Basket {
 		return 40;
 	}
 	
+	public int getPriceForF()
+	{
+		return 10;
+	}
 }
