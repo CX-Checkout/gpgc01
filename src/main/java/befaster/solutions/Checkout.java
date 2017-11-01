@@ -15,7 +15,7 @@ public class Checkout {
 		try
 		{
 			parseInputString(input, basket);
-			return basket.getPrice();
+			return basket.getTotalPrice();
 		}
 		catch(IllegalInputException e)
 		{
@@ -28,29 +28,10 @@ public class Checkout {
 	{
 		for(int i = 0; i < input.length(); i++)
 		{
-			switch(input.charAt(i))
-			{
-				case 'A':
-					basket.addA();
-					break;
-				case 'B':
-					basket.addB();
-					break;
-				case 'C':
-					basket.addC();
-					break;
-				case 'D':
-					basket.addD();
-					break;
-				case 'E':
-					basket.addE();
-					break;
-				case 'F':
-					basket.addF();
-					break;
-				default:
-					throw new  IllegalInputException("Input gresit!");
-			}
+			if(input.charAt(i) < 65 || input.charAt(i) > 90)
+				throw new  IllegalInputException("Input gresit!");
+			else
+				basket.addItem(input.charAt(i));
 		}
 		
 	}
